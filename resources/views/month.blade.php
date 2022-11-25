@@ -5,7 +5,7 @@
             <div class="flex items-center justify-between">
                 <p tabindex="0"
                     class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">
-                    Dashboard</p>
+                    Dashboard Month</p>
             </div>
         </div>
         <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
