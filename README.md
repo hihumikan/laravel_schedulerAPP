@@ -1,66 +1,81 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# はじめに
+本レポートでは、今回作成したスケジュール管理用 Web アプリの詳細な説明について述べる。基本的な操作方法から、設計のコンセプトを述べるとともに、感想も述べる。
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 利用環境
+本章では、本作品の利用環境について述べる。
 
-## About Laravel
+### 必要環境
+当アプリケーションは Laravel にて作成しているため、それに伴った環境が必要となる。下記の図1にインストールに必要な言語やライブラリを示す。
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- MySQL データベース利用
+- Composer パッケージ管理システム
+- PHP(8.0.2) プログラミング言語
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+![図1: 動作させるための必要な環境一覧](image_url_for_figure_1)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Laravel
+今回のアプリケーションは Laravel と呼ばれる、MVC アーキテクチャを利用した PHP フレームワークを利用して開発した。Routing や view、クエリビルダなどの基本的な Web アプリケーションを制作する上で必要機能を揃えている。
 
-## Learning Laravel
+## クライアント側
+本章では、クライアント側で利用する画面の説明を述べる。
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 会員登録
+ページにアクセスすると図2のようにページが表示される。スケジュール管理を行うためにはユーザ登録が必要となるため、右上の "Register" をクリックし、登録処理を行う。
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+![](https://hackmd.io/_uploads/SyG13rK62.png)
+![図2: 一番初めに表示されるページ](image_url_for_figure_2)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+"Register" を押すと、名前とメール、パスワードを記入する図3の画面が表示されるため、入力を行う。ユーザーごとにスケジュールの内容が変わる仕組みになっている。なお、これらは Laravel Breeze を用いて開発した。
 
-## Laravel Sponsors
+![](https://hackmd.io/_uploads/SJSRiHKp3.png)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+![図3: ユーザ登録画面](image_url_for_figure_3)
 
-### Premium Partners
+### スケジュール一覧
+/login にてログイン後、ユーザが登録したスケジュールが一覧で表示される図4のようなページに遷移する。上のナビゲーションバーで "Week" (1週間)、"Month" (1ヶ月) をクリックするとそれぞれ週間と月間のスケジュールを表示させることが可能である。
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+![](https://hackmd.io/_uploads/Hyyl3SKTh.png)
+![図4: スケジュール一覧の画面](image_url_for_figure_4)
 
-## Contributing
+### スケジュールの登録
+スケジュールの登録は、"Add schedule" というボタンをクリックして登録処理を行う。/post に遷移をし、図5のようなフォーム画面に遷ぶことができる。ここで、登録したい内容のスケジュールを登録することができる。送信ボタンをクリックすると、スケジュール一覧画面に遷移し、登録されたことが確認できる。
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+![](https://hackmd.io/_uploads/HJYxhSYpn.png)
+![図5: スケジュール登録画面](image_url_for_figure_5)
 
-## Code of Conduct
+### スケジュールの変更と削除
+スケジュールの削除には図4のスケジュール一覧から削除したいスケジュールの削除ボタンを押すことによって削除ができる。また、変更も該当のスケジュールにある変更ボタンを押すことによって、登録画面のテキストにすでに登録した内容が書いてあるため、書き直したい部分を書き直し、送信ボタンを押すことで、変更を行うことができる。
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## バックエンド側
+本章では、バックエンド側の設計のコンセプトを述べる。
 
-## Security Vulnerabilities
+### データベース
+今回利用したデータベースのテーブルでは User と Schedule を利用した。それぞれ図6、図7にカラムを載せる。ユーザは登録に必要な情報として名前、メール、パスワード、トークンを登録する。スケジュールは内容、場所、開始終了日時、ユーザ id を明記した
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+![](https://hackmd.io/_uploads/HJAWnSFah.png)
+![図6: User テーブル](image_url_for_figure_6)
 
-## License
+![](https://hackmd.io/_uploads/ByiG2HFp2.png)
+![図7: Schedule テーブル](image_url_for_figure_7)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### ルーティング
+ルーティングの部分では、todolist/routes/web.php(図8)にて全て記載している。基本的な CRUD を実装しており、全て TodoController にて処理を委譲している。また、これらのルーティングはミドルウェアを挟んでおり、ログイン済みのユーザのみリクエストが行える。
+
+![](https://hackmd.io/_uploads/SJa7hSYTn.png)
+![図8: ルーティング一覧](image_url_for_figure_8)
+
+### コントローラ
+コントローラでは、基本的にデータベース操作や、view を返す処理を行なっている。図9に一部を載せる。Index では、ログインしているユーザの id を取得したのちに、すべてのスケジュールを取り出し、view でそれらのデータを渡している。Store では、スケジュールの登録の際にバリデーションと呼ばれる必要な情報が含まれているかを検査したのちに、データベースに入れる処理を行っている。
+
+![](https://hackmd.io/_uploads/B1KEhrFah.png)
+![図9: コントローラのコード一部](image_url_for_figure_9)
+
+全体な CRUD 処理の流れは図10に示す。
+![](https://hackmd.io/_uploads/rkdS2HY6h.png)
+![図10: CRUD 処理の全体](image_url_for_figure_10)
+
+# 終わりに
+本章では、感想について述べる。
+
+## 感想
+今回制作したアプリケーションは基本的な CRUD 処理を行う Web アプリケーションであったため、目標や達成度といった点では自己評価として高得点である。しかしながら、FatController という責務の分割を行なっていないことや、ディレクトリ構成が改善の余地が見られるため、今後の Web アプリケーション開発では意識したい。
